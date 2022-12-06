@@ -1,0 +1,21 @@
+tags:
+- name: SKU
+  description: SKU API
+
+paths:
+  /sku?skuCode:
+    get:
+      parameters:
+        - in: query
+          name: skuCode 
+          required: true
+          schema:
+            type: string
+          description: SKU code
+      responses:
+        200:
+          description: 'OK'
+
+schemes:
+ - https
+ - http

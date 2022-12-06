@@ -1,11 +1,29 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import chai from 'chai';
-import {getSKULevels, calculate} from './index';
+import calculate from '../utils/calculate';
+import SKUService from '../services/sku.service';
+import chaiHttp from 'chai-http';
 import 'mocha';
 
+chai.use(chaiHttp)
+
 describe('getSKULevels Test suite', () => {
+    const skuService = new SKUService();
+
+    it('Check SKU level basic endpoint test', async () => {
+        const skuCode = "LTV719449/39/39";
+        return chai.request('http://localhost:3000').get(`/sku?skuCode=${skuCode}`)
+        .then(res => {
+          chai.expect(res.body).has.property('data');
+          const { data } = res.body;
+          chai.expect(data).has.property('sku');
+          chai.expect(data).has.property('qty');
+          chai.expect(data).to.deep.equal({ sku: 'LTV719449/39/39', qty: 8510 })
+        })
+    });
 
     it('Check SKU level basic', async () => {
-        return getSKULevels("LTV719449/39/39").then((response)=>{
+        return skuService.getSKULevels("LTV719449/39/39").then((response)=>{
             chai.expect(response).has.property('sku');
             chai.expect(response).has.property('qty');
             chai.expect(response).to.deep.equal({ sku: 'LTV719449/39/39', qty: 8510 })
@@ -13,7 +31,7 @@ describe('getSKULevels Test suite', () => {
     });
 
     it('Check SKU level not in Stock and Transactions', () => {
-        return getSKULevels("LTV719449X/39/39").catch((response)=>{
+        return skuService.getSKULevels("LTV719449X/39/39").catch((response)=>{
             chai.expect(response).to.be.an('string');
             chai.expect(response)
                 .to
@@ -23,7 +41,7 @@ describe('getSKULevels Test suite', () => {
     });
     
     it('Check SKU level not in Stock and Transactions- order at stocklevel 0', () => {
-        return getSKULevels("REFUNDENTRY/68/09").catch((response)=>{
+        return skuService.getSKULevels("REFUNDENTRY/68/09").catch((response)=>{
             chai.expect(response).to.be.an('string');
             chai.expect(response)
                 .to
@@ -33,7 +51,7 @@ describe('getSKULevels Test suite', () => {
     });
 
     it('Check SKU level not in Stock but present in Transactions- refund at stocklevel 0', () => {
-        return getSKULevels("NEWENTRY/68/09").then((response)=>{
+        return skuService.getSKULevels("NEWENTRY/68/09").then((response)=>{
             chai.expect(response).has.property('sku');
             chai.expect(response).has.property('qty');
             chai.expect(response).to.deep.equal({ sku: 'NEWENTRY/68/09', qty: 8 })

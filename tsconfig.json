@@ -1,13 +1,22 @@
 {
-  "ts-node": {
-    "compilerOptions": {
-      "module": "commonjs"
-    }
-  },
   "compilerOptions": {
+    "target": "es2017",
+    "lib": ["es2017", "esnext.asynciterable"],
+    "typeRoots": ["node_modules/@types"],
+    "allowSyntheticDefaultImports": true,
+    "emitDecoratorMetadata": true,
+    "moduleResolution": "node",
+    "pretty": true,
+    "sourceMap": true,
+    "rootDir": "src",
+    "declaration": true,
+    "allowJs": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "noEmit": false,
+    "importHelpers": true,
     "outDir": "build",
     "resolveJsonModule": true,
-    "target": "es6",
+    "experimentalDecorators": true,
     "module": "commonjs",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,  

@@ -1,2 +1,4 @@
 node_modules
 build
+**/src/utils/debug
+**/src/utils/error

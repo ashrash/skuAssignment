@@ -20,10 +20,28 @@ Functionality can be split into many files to help keep the project clear and or
 #Install dependencies
 npm i 
 
-#Run code
+#Run service
 npm run start
 
 #Run unit tests
+#Please run the service in background before running tests. (Endpoint test included)
 npm run test
 ```
 
+## Swagger 
+
+```
+#Visit the below url to access swagger after running the app
+http://localhost:3000/api-docs
+
+```
+
+
+## Endpoint
+
+```
+End point to fetch SKU level by SKU code
+
+http://localhost:3000/sku?skuCode=:skucode
+
+```
