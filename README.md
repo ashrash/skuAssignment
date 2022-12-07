@@ -21,7 +21,7 @@ Functionality can be split into many files to help keep the project clear and or
 npm i 
 
 #Run service
-npm run start
+npm run dev
 
 #Run unit tests
 #Please run the service in background before running tests. (Endpoint test included)
