@@ -23,25 +23,25 @@ npm i
 #Run service
 npm run dev
 
-#Run unit tests
-#Please run the service in background before running tests. (Endpoint test included)
-npm run test
+## Running Tests
+To run unit tests: Please run the service in background before running tests. (Endpoint test included)
+```
+npm test
 ```
 
 ## Swagger 
 
-```
-#Visit the below url to access swagger after running the app
-http://localhost:3000/api-docs
+Visit the below url to access swagger after running the app
 
+```
+http://localhost:3000/api-docs
 ```
 
 
 ## Endpoint
-
-```
 End point to fetch SKU level by SKU code
 
-http://localhost:3000/sku?skuCode=:skucode
 
+```
+http://localhost:3000/sku?skuCode=:skucode
 ```
